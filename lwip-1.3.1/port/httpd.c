@@ -96,9 +96,8 @@ http_sent(void *arg, struct tcp_pcb *pcb, u16_t len)
 static err_t
 http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
 {
-  int i, j;
+  int i;
   char *data;
-  char fname[40];
   struct fs_file file = {0, 0};
   struct http_state *hs;
 
@@ -113,26 +112,32 @@ http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
     if (hs->file == NULL)
     {
       data = p->payload;
-        
-      if (strncmp(data, "GET /STM32F107ADC", 17) == 0)
+
+      if (strstr(data, "GET /?led=") != NULL)
       {
-        char Digit1=0, Digit2=0, Digit3=0; 
-        int ADCVal = 0;        
+        i = 10;
+
+		switch(data[i]){
+		case '1':
+			LED_ON();
+			flag_LedFlicker = RESET;
+			fs_open("/LedOn.html", &file);
+			break;
+		case '2':
+			LED_OFF();
+			flag_LedFlicker = RESET;
+			fs_open("/LedOff.html", &file);
+			break;
+		case '3':
+			flag_LedFlicker = SET;
+			fs_open("/LedFlicker.html", &file);
+			break;
+		default:
+			fs_open("/LedFlicker.html", &file);
+			break;
+		}
 
         pbuf_free(p);
-
-        ADCVal = ADC_GetConversionValue(ADC1);
-        ADCVal = ADCVal/8;
-        Digit1= ADCVal/100;
-        Digit2= (ADCVal-(Digit1*100))/10;
-        Digit3= ADCVal-(Digit1*100)-(Digit2*10);
-        /* Update the ADC value in STM32F107ADC.html */
-        *((data_STM32F107ADC_html)+ 0xb47+92) = 0x30 + Digit1; /* ADC value 1st digit */
-        *((data_STM32F107ADC_html)+ 0xb48+92) = 0x30 + Digit2; /* ADC value 2nd digit */ 
-        *((data_STM32F107ADC_html)+ 0xb49+92) = 0x30 + Digit3; /* ADC value 3rd digit*/
-
-    
-        fs_open("/STM32F107ADC.html", &file);
 
         hs->file = file.data;
         hs->left = file.len;
@@ -143,54 +148,40 @@ http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
            successfully sent by a call to the http_sent() function. */
         tcp_sent(pcb, http_sent);
       }
-      else if (strncmp(data, "GET /method=get", 15) == 0)
-      {
-        i = 15;
-//        STM_EVAL_LEDOff(LED1);
-//        STM_EVAL_LEDOff(LED2);
-//        STM_EVAL_LEDOff(LED3);
-//        STM_EVAL_LEDOff(LED4);
-
-        while(data[i]!=0x20/* */)
-        {
-          i++; 
-          if (data[i] == 0x6C /* l */)
-          {
-            i++;
-            if (data[i] ==  0x65 /* e */)
-            {
-              i++;
-              if (data[i] ==  0x64 /* d*/)
-              {
-                i+=2; 
-                if(data[i]==0x31 /* 1 */)
-                {
-//                  STM_EVAL_LEDOn(LED1);   
-                }
-  
-                if(data[i]==0x32 /* 2 */)
-                {
-//                  STM_EVAL_LEDOn(LED2);   
-                }
-        
-                if(data[i]==0x33 /* 3 */)
-                {
-//                  STM_EVAL_LEDOn(LED3);   
-                }
-            
-                if(data[i]==0x34 /* 4 */)
-                {
-//                  STM_EVAL_LEDOn(LED4);  
-                }
-              }   
-            }
-          } 
-        }
-
-        pbuf_free(p);
-
-        fs_open("/STM32F107LED.html", &file);
-
+	  else if(strstr(data,"GET /image/LedOn.jpg") != NULL){
+		pbuf_free(p);
+		fs_open("/image/LedOn.jpg", &file);
+        hs->file = file.data;
+        hs->left = file.len;
+        send_data(pcb, hs);
+        tcp_sent(pcb, http_sent);
+	  }
+	  else if(strstr(data,"GET /image/LedOff.jpg") != NULL){
+		pbuf_free(p);
+		fs_open("/image/LedOff.jpg", &file);
+        hs->file = file.data;
+        hs->left = file.len;
+        send_data(pcb, hs);
+        tcp_sent(pcb, http_sent);
+	  }
+	  else if(strstr(data,"GET /image/LedFlicker.gif") != NULL){
+		pbuf_free(p);
+		fs_open("/image/LedFlicker.gif", &file);
+        hs->file = file.data;
+        hs->left = file.len;
+        send_data(pcb, hs);
+        tcp_sent(pcb, http_sent);
+	  }
+	  else if(strstr(data, "GET /") != NULL)
+	  {
+		pbuf_free(p);
+		if(flag_LedFlicker == SET){
+			fs_open("/LedFlicker.html", &file);
+		}else if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_13)){
+			fs_open("/LedOff.html", &file);
+		}else{
+			fs_open("/LedOn.html", &file);
+		}
         hs->file = file.data;
         hs->left = file.len;
 
@@ -199,44 +190,7 @@ http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
         /* Tell TCP that we wish be to informed of data that has been
            successfully sent by a call to the http_sent() function. */
         tcp_sent(pcb, http_sent);
-      }    
-      else if (strncmp(data, "GET ", 4) == 0)
-      {
-        for (i = 0; i < 40; i++)
-        {
-          if (((char *)data + 4)[i] == ' ' ||
-              ((char *)data + 4)[i] == '\r' ||
-              ((char *)data + 4)[i] == '\n')
-          {
-            ((char *)data + 4)[i] = 0;
-          }
-        }
-        
-        i = 0;
-        j = 0;
-        
-        do
-        {
-          fname[i] = ((char *)data + 4)[j];
-          j++;
-          i++;
-        } while (fname[i - 1] != 0 && i < 40);
-        
-        pbuf_free(p);
-
-        if (!fs_open(fname, &file))
-        {
-          fs_open("/STM32F107.html", &file);
-        }
-        hs->file = file.data;
-        hs->left = file.len;
-
-        send_data(pcb, hs);
-
-        /* Tell TCP that we wish be to informed of data that has been
-           successfully sent by a call to the http_sent() function. */
-        tcp_sent(pcb, http_sent);
-      }
+	  }
       else
       {
         close_conn(pcb, hs);

@@ -50,7 +50,7 @@ __IO uint32_t ARPTimer = 0;
 #ifdef LWIP_DHCP
 __IO uint32_t DHCPfineTimer = 0;
 __IO uint32_t DHCPcoarseTimer = 0;
-static uint32_t IPaddress = 0;
+uint32_t IPaddress = 0;
 #endif
 
 __IO uint32_t DisplayTimer = 0;
@@ -87,7 +87,7 @@ void LwIP_Init(void)
   netmask.addr = 0;
   gw.addr = 0;
 #else
-  IP4_ADDR(&ipaddr, 192, 168, 1, 101);
+  IP4_ADDR(&ipaddr, 192, 168, 1, 11);
   IP4_ADDR(&netmask, 255, 255, 255, 0);
   IP4_ADDR(&gw, 192, 168, 1, 1);
 #endif

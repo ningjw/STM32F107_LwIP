@@ -1,24 +1,3 @@
-/**
-  ******************************************************************************
-  * @file    main.c
-  * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11/20/2009
-  * @brief   Main program body
-  ******************************************************************************
-  * @copy
-  *
-  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
-  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
-  * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
-  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
-  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
-  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
-  *
-  * <h2><center>&copy; COPYRIGHT 2009 STMicroelectronics</center></h2>
-  */
-
-/* Includes ------------------------------------------------------------------*/
 #include "stm32_eth.h"
 #include "netconf.h"
 #include "main.h"
@@ -34,9 +13,10 @@
 /* Private variables ---------------------------------------------------------*/
 __IO uint32_t LocalTime = 0; /* this variable is used to create a time reference incremented by 10ms */
 uint32_t timingdelay;
-
+uint8_t  flag_LedFlicker = RESET;
+uint32_t LedCounter = 0;
 /* Private function prototypes -----------------------------------------------*/
-
+void Led_Periodic_Handle(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -61,8 +41,24 @@ int main(void)
   {
 	/* LwIP periodic services are done here */
 	LwIP_Periodic_Handle(LocalTime);
+	Led_Periodic_Handle();
   }
 }
+
+void Led_Periodic_Handle(void)
+{
+	if(flag_LedFlicker){
+		if(LedCounter < 500){
+			LED_ON();
+		}
+		if(LedCounter < 1000){
+			LED_OFF();
+		}else{
+			LedCounter = 0;
+		}
+	}
+}
+
 
 /**
   * @brief  Inserts a delay time.
@@ -80,6 +76,8 @@ void Delay(uint32_t nCount)
   }
 }
 
+
+
 /**
   * @brief  Updates the system local time
   * @param  None
@@ -88,9 +86,5 @@ void Delay(uint32_t nCount)
 void Time_Update(void)
 {
   LocalTime += SYSTEMTICK_PERIOD_MS;
+  LedCounter += SYSTEMTICK_PERIOD_MS;
 }
-
-
-
-
-/******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/
