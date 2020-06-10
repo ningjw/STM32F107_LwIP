@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F107xC</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;               ../Middlewares/Third_Party/LwIP/src/include;               ../Middlewares/Third_Party/LwIP/system;               ../Drivers/STM32F1xx_HAL_Driver/Inc;               ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;               ../Middlewares/Third_Party/LwIP/src/include/netif/ppp;               ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;               ../Middlewares/Third_Party/LwIP/src/include/lwip;               ../Middlewares/Third_Party/LwIP/src/include/lwip/apps;               ../Middlewares/Third_Party/LwIP/src/include/lwip/priv;               ../Middlewares/Third_Party/LwIP/src/include/lwip/prot;               ../Middlewares/Third_Party/LwIP/src/include/netif;               ../Middlewares/Third_Party/LwIP/src/include/posix;               ../Middlewares/Third_Party/LwIP/src/include/posix/sys;               ../Middlewares/Third_Party/LwIP/system/arch;               ../Drivers/CMSIS/Include;   ../Middlewares/Third_Party/LwIP/src/apps/httpd</IncludePath>
+              <IncludePath>../Inc;                    ../Middlewares/Third_Party/LwIP/src/include;                    ../Middlewares/Third_Party/LwIP/system;                    ../Drivers/STM32F1xx_HAL_Driver/Inc;                    ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;                    ../Middlewares/Third_Party/LwIP/src/include/netif/ppp;                    ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;                    ../Middlewares/Third_Party/LwIP/src/include/lwip;                    ../Middlewares/Third_Party/LwIP/src/include/lwip/apps;                    ../Middlewares/Third_Party/LwIP/src/include/lwip/priv;                    ../Middlewares/Third_Party/LwIP/src/include/lwip/prot;                    ../Middlewares/Third_Party/LwIP/src/include/netif;                    ../Middlewares/Third_Party/LwIP/src/include/posix;                    ../Middlewares/Third_Party/LwIP/src/include/posix/sys;                    ../Middlewares/Third_Party/LwIP/system/arch;                    ../Drivers/CMSIS/Include;        ../Middlewares/Third_Party/LwIP/src/apps/httpd</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -447,6 +447,16 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>ppp_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\ppp_app.c</FilePath>
+            </File>
+            <File>
+              <FileName>lwipopts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\lwipopts.h</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>

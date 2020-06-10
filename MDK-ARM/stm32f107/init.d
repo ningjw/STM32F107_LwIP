@@ -85,5 +85,6 @@ stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp.h
 stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/lcp.h
 stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp.h
 stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ipcp.h
-stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/vj.h
+stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/upap.h
+stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp.h
 stm32f107\init.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/pppdebug.h

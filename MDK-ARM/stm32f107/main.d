@@ -63,4 +63,3 @@ stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h
 stm32f107\main.o: ../Inc/ethernetif.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd_opts.h
-stm32f107\main.o: ../Inc/httpd_cgi_ssi.h

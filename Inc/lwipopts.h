@@ -77,6 +77,10 @@
 #define PPP_SUPPORT 1
 /*----- Default Value for PPPOE_SUPPORT: 0 ---*/
 #define PPPOE_SUPPORT 1
+/*----- Default Value for PPPOS_SUPPORT: 1 ---*/
+#define PPPOS_SUPPORT 0
+/*----- Default Value for PAP_SUPPORT: 0 ---*/
+#define PAP_SUPPORT 1
 /*----- Default Value for LWIP_HTTPD: 0 ---*/
 #define LWIP_HTTPD 1
 /*----- Default Value for LWIP_HTTPD_CGI: 0 ---*/

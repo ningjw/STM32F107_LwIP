@@ -2480,10 +2480,9 @@ http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
 #endif /* LWIP_HTTPD_SUPPORT_POST */
   {
     if (hs->handle == NULL) {
-		err_t parsed = ERR_OK;
-//      err_t parsed = http_parse_request(p, hs, pcb);
-//      LWIP_ASSERT("http_parse_request: unexpected return value", parsed == ERR_OK
-//        || parsed == ERR_INPROGRESS ||parsed == ERR_ARG || parsed == ERR_USE);
+      err_t parsed = ERR_OK;//http_parse_request(p, hs, pcb);
+      LWIP_ASSERT("http_parse_request: unexpected return value", parsed == ERR_OK
+        || parsed == ERR_INPROGRESS ||parsed == ERR_ARG || parsed == ERR_USE);
 #if LWIP_HTTPD_SUPPORT_REQUESTLIST
       if (parsed != ERR_INPROGRESS) {
         /* request fully parsed or error */
@@ -2493,7 +2492,7 @@ http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
         }
       }
 #endif /* LWIP_HTTPD_SUPPORT_REQUESTLIST */
-	  	char *data = p->payload;
+	  char *data = p->payload;
 	  struct fs_file file = {0, 0};
 	  extern uint8_t flag_LedFlicker;
 	  if (strstr(data, "GET /?led=") != NULL)

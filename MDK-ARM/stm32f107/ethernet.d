@@ -71,9 +71,5 @@ stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp.
 stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/lcp.h
 stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp.h
 stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ipcp.h
-stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/vj.h
-stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/priv/tcp_priv.h
-stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/tcp.h
-stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/icmp.h
-stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h
-stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/tcp.h
+stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/upap.h
+stm32f107\ethernet.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp.h
