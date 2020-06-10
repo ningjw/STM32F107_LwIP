@@ -41,9 +41,9 @@ struct netif gnetif;
 ip4_addr_t ipaddr;
 ip4_addr_t netmask;
 ip4_addr_t gw;
-uint8_t IP_ADDRESS[4];
-uint8_t NETMASK_ADDRESS[4];
-uint8_t GATEWAY_ADDRESS[4];
+uint8_t IP_ADDRESS[4]={192,168,1,200};
+uint8_t NETMASK_ADDRESS[4]={255,255,255,0};
+uint8_t GATEWAY_ADDRESS[4]={192,168,1,1};
 
 /* USER CODE BEGIN 2 */
 

@@ -47,7 +47,9 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#define LED_ON()   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET)
+#define LED_OFF()  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET)
+#define LED_FLICKER() HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13)
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

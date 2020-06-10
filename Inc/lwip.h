@@ -40,7 +40,7 @@
 #endif /* WITH_RTOS */
 
 /* USER CODE BEGIN 0 */
-
+#include "httpd.h"
 /* USER CODE END 0 */
 
 /* Global Variables ----------------------------------------------------------*/

@@ -48,6 +48,8 @@
 "stm32f107\slipif.o"
 "stm32f107\lowpan6.o"
 "stm32f107\ecp.o"
+"stm32f107\httpd.o"
+"stm32f107\fs.o"
 "stm32f107\api_lib.o"
 "stm32f107\api_msg.o"
 "stm32f107\err.o"

@@ -61,5 +61,7 @@ stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ethernet.h
 stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dhcp.h
 stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h
 stm32f107\lwip.o: ../Inc/ethernetif.h
+stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd.h
+stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd_opts.h
 stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/init.h
 stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/sio.h

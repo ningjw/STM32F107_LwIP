@@ -21,17 +21,21 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.7.0
 Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
-C:\Users\ningjw\Desktop\Stm32CubeMx\stm32f107\MDK-ARM\stm32f107.uvprojx
+C:\Users\ningjw\Desktop\Stm32CubeMx\MDK-ARM\stm32f107.uvprojx
 Project File Date:  06/10/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'stm32f107'
 compiling main.c...
+compiling httpd.c...
+../Middlewares/Third_Party/LwIP/src/apps/httpd/httpd.c(1904): warning:  #177-D: function "http_parse_request"  was declared but never referenced
+  http_parse_request(struct pbuf *inp, struct http_state *hs, struct tcp_pcb *pcb)
+../Middlewares/Third_Party/LwIP/src/apps/httpd/httpd.c: 1 warning, 0 errors
 linking...
-Program Size: Code=56146 RO-data=1890 RW-data=264 ZI-data=39640  
+Program Size: Code=61346 RO-data=29710 RW-data=268 ZI-data=39636  
 FromELF: creating hex file...
-"stm32f107\stm32f107.axf" - 0 Error(s), 0 Warning(s).
+"stm32f107\stm32f107.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
