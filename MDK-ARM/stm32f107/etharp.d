@@ -57,6 +57,11 @@ stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ethern
 stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etharp.h
 stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/snmp.h
 stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dhcp.h
+stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/udp.h
+stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip.h
+stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h
+stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h
+stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h
 stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/autoip.h
 stm32f107\etharp.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ethernet.h
 stm32f107\etharp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

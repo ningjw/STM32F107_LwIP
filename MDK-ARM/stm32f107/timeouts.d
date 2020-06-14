@@ -67,6 +67,8 @@ stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/etharp.h
 stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ethernet.h
 stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etharp.h
 stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dhcp.h
+stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/udp.h
+stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h
 stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/autoip.h
 stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/igmp.h
 stm32f107\timeouts.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dns.h

@@ -71,3 +71,4 @@ stm32f107\netif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etherne
 stm32f107\netif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etharp.h
 stm32f107\netif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/sys.h
 stm32f107\netif.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ethernet.h
+stm32f107\netif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dhcp.h

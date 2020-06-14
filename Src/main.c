@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "dns.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,7 +56,9 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+ip_addr_t dest_ipaddr;
+char ipStr[20] = {0};
+void dns_callback(const char *name,const ip_addr_t *ipaddr, void *callback_arg);
 /* USER CODE END 0 */
 
 /**
@@ -68,7 +70,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
-
+  
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -82,7 +84,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  uint8_t flag = 1;
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -101,6 +103,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  MX_LWIP_Process();
+	  if(flag && HAL_GetTick() > 10000){
+		  flag = 0;
+		  dns_gethostbyname("www.baidu.com",&dest_ipaddr,dns_callback,NULL);
+	  }
+	  
   }
   /* USER CODE END 3 */
 }
@@ -185,11 +192,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
 }
 
 /* USER CODE BEGIN 4 */
-
+void dns_callback(const char *name,const ip_addr_t *ipaddr, void *callback_arg)
+{
+	strcpy(ipStr, ip4addr_ntoa(ipaddr)) ;
+}
 /* USER CODE END 4 */
 
 /**

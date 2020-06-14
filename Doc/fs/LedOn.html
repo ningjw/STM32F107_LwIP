@@ -2,9 +2,9 @@
 
 <head><title>STM32F107LED</title></head>
 <br>
-<div align="center">
-<body>
-<style>
+
+
+<style type="text/css">
 	.button1 {
 		-webkit-transition-duration: 0.4s;
 		transition-duration: 0.4s;
@@ -19,10 +19,22 @@
 		color: white;
 	}
 </style>
-
+<div align="center" style="background-color:#FFFFFF;">
+<body>
 <table style="width: 787px; color: white; height: 31px;" white="" color="" ;="" 100="" border="0" cellpadding="3" cellspacing="0">
-<td class="tabtitle" style="height: 15px; background-color: rgb(51, 51, 255);">
-<big><big><strong>STM32F107 Webserver LED Control</strong></big></big>
+<big><big><strong>STM32F107 Webserver Control</strong></big></big>
+</table>
+<br>
+
+<table style="width: 600px; height: 40px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="font-family: Verdana; font-weight: bold; font-style: italic; background-color: rgb(51, 51, 255);">
+<small><a href="LedOn.html"><span style="color: white;">Led control</span></a></small></td>
+<td style="font-family: Verdana; font-weight: bold; font-style: italic; background-color: rgb(51, 51, 255);">
+<small><a href="dns.html"><span style="color: white;">DNS parse</span></a></small></td>
+</tr>
+</tbody>
 </table>
 
 <br>
@@ -33,7 +45,12 @@
 <form action="" method="get">
 <label><input value="1" name="led" type="radio" checked>LED ON</label>
 <label><input value="2" name="led" type="radio">LED OFF</label>
-<label><input value="3" name="led" type="radio">LED FLICKER</label><br>
+<label><input value="3" name="led" type="radio">LED FLICKER</label>
+<br>
+<br>
+Timed: <input type="text" name="timed" size=10/>
+Freq: <input type="text" name="freq" size=10/>
+<br>
 <br>
 <input value="Send" class="button1" type="submit"> 
 </form>

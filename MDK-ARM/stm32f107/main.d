@@ -59,7 +59,13 @@ stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ethernet
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etharp.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/netif/ethernet.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dhcp.h
+stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/udp.h
+stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip.h
+stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h
+stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h
+stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h
 stm32f107\main.o: ../Inc/ethernetif.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd_opts.h
+stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dns.h
