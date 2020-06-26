@@ -41,6 +41,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "httpd.h"
+
 /* USER CODE END 0 */
 
 /* Global Variables ----------------------------------------------------------*/
@@ -57,7 +58,7 @@ void MX_LWIP_Init(void);
  *   - Handle timeouts if NO_SYS_NO_TIMERS not set
  */ 
 void MX_LWIP_Process(void);
-
+void httpd_ssi_cgi_init(void);
 /* USER CODE END 1 */
 #endif /* WITH_RTOS */
 

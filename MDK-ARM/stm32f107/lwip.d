@@ -70,3 +70,4 @@ stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd.h
 stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd_opts.h
 stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/init.h
 stm32f107\lwip.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/sio.h
+stm32f107\lwip.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

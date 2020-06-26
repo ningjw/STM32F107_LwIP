@@ -26,7 +26,7 @@
 #endif /* MDK ARM Compiler */
 
 /* USER CODE BEGIN 0 */
-
+#include "string.h"
 /* USER CODE END 0 */
 /* Private function prototypes -----------------------------------------------*/
 /* ETH Variables initialization ----------------------------------------------*/
@@ -39,7 +39,17 @@ uint32_t DHCPcoarseTimer = 0;
 uint8_t IP_ADDRESS[4]={192,168,1,200};
 uint8_t NETMASK_ADDRESS[4]={255,255,255,0};
 uint8_t GATEWAY_ADDRESS[4]={192,168,1,1};
-
+extern char ipStr[20];
+extern char urlStr[50];
+extern uint8_t flag_LedFlicker;
+extern uint8_t flag_LedOnAllTheTime;
+extern uint32_t LedFreq;
+extern uint32_t LedTimed;
+extern uint8_t flag_GetIpAddr;
+static const char *ppcTAGs[]=  //SSIµÄTag
+{
+	"p", //ipµØÖ·
+};
 
 /* USER CODE END 1 */
 
@@ -51,7 +61,92 @@ ip4_addr_t gw;
 
 /* USER CODE BEGIN 2 */
 
-/* USER CODE END 2 */
+/***************************************************************************************
+  * @brief   CGI LED¿ØÖÆ¾ä±ú
+  * @input   
+  * @return  
+***************************************************************************************/
+const char* LEDS_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
+{
+	if (strlen(pcValue[1]) == 0 || atoi(pcValue[1]) == 0){
+		flag_LedOnAllTheTime = SET;
+	}else{
+		flag_LedOnAllTheTime = RESET;
+		LedTimed = atoi(pcValue[1]) * 1000;
+	}
+	if (strlen(pcValue[2]) == 0){
+		LedFreq = 500;
+	}else{
+		LedFreq = atoi(pcValue[2]);
+	}
+	
+	if (*pcValue[0] == '1'){
+		LED_ON();
+		flag_LedFlicker = RESET;
+	}else if(*pcValue[0] == '2'){
+		LED_OFF();
+		flag_LedFlicker = RESET;
+	}else if(*pcValue[0] == '3'){
+		flag_LedFlicker = SET;
+	}
+	
+	if(flag_LedFlicker == SET){
+		 return "/LedFlicker.shtml";
+	}else if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_13)){
+		return "/LedOff.shtml";
+	}else{
+		 return "/LedOn.shtml";
+	}
+}
+
+/***************************************************************************************
+  * @brief   CGI DNS¿ØÖÆ¾ä±ú
+  * @input   
+  * @return  
+***************************************************************************************/
+const char* DNS_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
+{
+	if(strcmp(urlStr, pcValue[0]) != 0 && strlen(pcValue[0]) < 50){
+		flag_GetIpAddr = SET;
+		memset(urlStr, 0, 50);
+		strcpy(urlStr, pcValue[0]);
+	}
+	return "/dns.shtml";
+}
+
+static const tCGI ppcURLs[]= //cgi³ÌÐò
+{
+	{"/leds.cgi",LEDS_CGI_Handler},
+	{"/dns.cgi",DNS_CGI_Handler},
+};
+
+/***************************************************************************************
+  * @brief   SSIµÄHandler¾ä±ú
+  * @input   
+  * @return  
+***************************************************************************************/
+static u16_t SSIHandler(int iIndex,char *pcInsert,int iInsertLen)
+{
+	if(strlen(ipStr) == 0){
+		strcpy(ipStr,"000.000.000.000");
+	}
+	strcpy(pcInsert,ipStr);
+	return strlen(pcInsert);
+}
+
+
+/***************************************************************************************
+  * @brief   
+  * @input   
+  * @return  
+***************************************************************************************/
+void httpd_ssi_cgi_init(void)
+{  
+	//ÅäÖÃSSI¾ä±ú
+	http_set_ssi_handler(SSIHandler, ppcTAGs, 1);
+	//ÅäÖÃCGI¾ä±ú
+	http_set_cgi_handlers(ppcURLs, 2);
+}
 
 /**
   * LwIP initialization function
@@ -94,10 +189,10 @@ void MX_LWIP_Init(void)
   dhcp_start(&gnetif);
 #endif
 
-/* USER CODE BEGIN 3 */
-
-/* USER CODE END 3 */
 }
+
+/* USER CODE END 2 */
+
 
 #ifdef USE_OBSOLETE_USER_CODE_SECTION_4
 /* Kept to help code migration. (See new 4_1, 4_2... sections) */

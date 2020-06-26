@@ -2480,7 +2480,7 @@ http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
 #endif /* LWIP_HTTPD_SUPPORT_POST */
   {
     if (hs->handle == NULL) {
-      err_t parsed = ERR_OK;//http_parse_request(p, hs, pcb);
+      err_t parsed = http_parse_request(p, hs, pcb);
       LWIP_ASSERT("http_parse_request: unexpected return value", parsed == ERR_OK
         || parsed == ERR_INPROGRESS ||parsed == ERR_ARG || parsed == ERR_USE);
 #if LWIP_HTTPD_SUPPORT_REQUESTLIST
@@ -2492,49 +2492,6 @@ http_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
         }
       }
 #endif /* LWIP_HTTPD_SUPPORT_REQUESTLIST */
-	  char *data = p->payload;
-	  struct fs_file file = {0, 0};
-	  extern uint8_t flag_LedFlicker;
-	  if (strstr(data, "GET /?led=") != NULL)
-      {
-		uint8_t  i = 10;
-
-		switch(data[i]){
-		case '1':
-			LED_ON();
-			flag_LedFlicker = RESET;
-			fs_open(&file,"/LedOn.html");
-			break;
-		case '2':
-			LED_OFF();
-			flag_LedFlicker = RESET;
-			fs_open(&file,"/LedOff.html");
-			break;
-		case '3':
-			flag_LedFlicker = SET;
-			fs_open(&file,"/LedFlicker.html");
-			break;
-		default:
-			fs_open(&file,"/LedFlicker.html");
-			break;
-		}
-	  }else if(strstr(data,"GET /image/LedOn.jpg") != NULL){
-		  fs_open(&file,"/image/LedOn.jpg");
-	  }else if(strstr(data,"GET /image/LedOff.jpg") != NULL){
-		  fs_open(&file,"/image/LedOff.jpg");
-	  }else if(strstr(data,"GET /image/LedFlicker.gif") != NULL){
-		  fs_open(&file,"/image/LedFlicker.gif");
-	  }else if(strstr(data, "GET") != NULL){
-		  if(flag_LedFlicker == SET){
-			fs_open(&file,"/LedFlicker.html");
-		}else if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_13)){
-			fs_open(&file,"/LedOff.html");
-		}else{
-			fs_open(&file,"/LedOn.html");
-		}
-	  }
-	  hs->file = file.data;
-      hs->left = file.len;
       pbuf_free(p);
       if (parsed == ERR_OK) {
 #if LWIP_HTTPD_SUPPORT_POST

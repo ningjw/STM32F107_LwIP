@@ -28,6 +28,10 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
 uint8_t flag_LedFlicker = RESET;
+uint8_t flag_LedOnAllTheTime = SET;
+uint32_t LedFreq = 500;
+uint32_t LedTimed = 1000;
+
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
@@ -183,13 +187,15 @@ void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
   static uint16_t count = 0;
-	
+  if(LedTimed){
+	  LedTimed--;
+  }
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
 	if(flag_LedFlicker){
 		count++;
-		if(count >= 500){
+		if(count >= LedFreq){
 			count = 0;
 			LED_FLICKER();
 		}

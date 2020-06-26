@@ -69,3 +69,4 @@ stm32f107\main.o: ../Inc/ethernetif.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/apps/httpd_opts.h
 stm32f107\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/dns.h
+stm32f107\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
