@@ -99,7 +99,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   httpd_init();
   httpd_ssi_cgi_init();
-  strcpy(urlStr,"www.baidu.com");
+  strcpy(urlStr, "www.baidu.com");
   /* USER CODE END 2 */
 
   /* Infinite loop */

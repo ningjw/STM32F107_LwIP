@@ -3,7 +3,7 @@
 <title>Static Call Graph - [stm32f107\stm32f107.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image stm32f107\stm32f107.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jun 16 00:14:43 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Jun 26 18:47:04 2020
 <BR><P>
 <H3>Maximum Stack Usage =       1432 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -4095,11 +4095,11 @@ Local Symbols
 <LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pppoe_send_padi
 <LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pppoe_abort_connect
 </UL>
-<BR>[Address Reference Count : 5]<UL><LI> pppoe.o(i.pppoe_timeout)
-<LI> pppoe.o(i.pppoe_connect)
+<BR>[Address Reference Count : 5]<UL><LI> pppoe.o(i.pppoe_connect)
 <LI> pppoe.o(i.pppoe_destroy)
 <LI> pppoe.o(i.pppoe_disc_input)
 <LI> pppoe.o(i.pppoe_disconnect)
+<LI> pppoe.o(i.pppoe_timeout)
 </UL>
 <P><STRONG><a name="[8b]"></a>pppoe_write</STRONG> (Thumb, 88 bytes, Stack size 32 bytes, pppoe.o(i.pppoe_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = pppoe_write &rArr; pppoe_xmit &rArr; pppoe_output &rArr; pbuf_free &rArr; mem_free &rArr; plug_holes &rArr; __2printf
